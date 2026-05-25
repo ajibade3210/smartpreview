@@ -30,27 +30,27 @@ function highlightCode(code: string, lang: "html" | "pug" | "jsx"): string {
     // Double curly brace variables: {{variable}}
     html = html.replace(
       /\{\{[^}]+\}\}/g,
-      '<span class="text-pink-400 font-semibold bg-pink-500/20 px-1.5 py-0.5 rounded transition-all">$&</span>'
+      '<span class="text-pink-400 font-semibold bg-pink-500/20 px-1.5 py-0.5 rounded transition-all">$&</span>',
     );
     // HTML Comments: <!-- comment -->
     html = html.replace(
       /(&lt;!--.*?--&gt;)/g,
-      '<span class="text-slate-500 italic">$1</span>'
+      '<span class="text-slate-500 italic">$1</span>',
     );
     // HTML Tag open/close name match (e.g. div, h1, p)
     html = html.replace(
       /&lt;(\/?[a-zA-Z0-9]+)/g,
-      '&lt;<span class="text-sky-400 font-medium">$1</span>'
+      '&lt;<span class="text-sky-400 font-medium">$1</span>',
     );
     // HTML Tag closing bracket
     html = html.replace(
       /(&gt;)/g,
-      '<span class="text-sky-400 font-medium">$1</span>'
+      '<span class="text-sky-400 font-medium">$1</span>',
     );
     // HTML class attribute and its value
     html = html.replace(
       /(class=)&quot;([^&]*)&quot;/g,
-      '<span class="text-indigo-300">$1</span><span class="text-emerald-400">&quot;$2&quot;</span>'
+      '<span class="text-indigo-300">$1</span><span class="text-emerald-400">&quot;$2&quot;</span>',
     );
     return html;
   }
@@ -59,22 +59,22 @@ function highlightCode(code: string, lang: "html" | "pug" | "jsx"): string {
     // Pug Comments: //- comment
     html = html.replace(
       /(\/\/-.*)/g,
-      '<span class="text-slate-500 italic">$1</span>'
+      '<span class="text-slate-500 italic">$1</span>',
     );
     // Pug Hash Interpolation: #{variable}
     html = html.replace(
       /#\{[^}]+\}/g,
-      '<span class="text-pink-400 font-semibold bg-pink-500/20 px-1.5 py-0.5 rounded transition-all">$&</span>'
+      '<span class="text-pink-400 font-semibold bg-pink-500/20 px-1.5 py-0.5 rounded transition-all">$&</span>',
     );
     // Pug Class selectors (e.g. .card)
     html = html.replace(
       /(\.card)/g,
-      '<span class="text-indigo-300 font-medium">$1</span>'
+      '<span class="text-indigo-300 font-medium">$1</span>',
     );
     // Pug standard HTML tags (e.g. h1, p)
     html = html.replace(
       /\b(h1|p)\b/g,
-      '<span class="text-sky-400 font-medium">$1</span>'
+      '<span class="text-sky-400 font-medium">$1</span>',
     );
     return html;
   }
@@ -83,32 +83,32 @@ function highlightCode(code: string, lang: "html" | "pug" | "jsx"): string {
     // JSX JS Single-line comments: // comment
     html = html.replace(
       /(\/\/.*)/g,
-      '<span class="text-slate-500 italic">$1</span>'
+      '<span class="text-slate-500 italic">$1</span>',
     );
     // JS keywords: function, return
     html = html.replace(
       /\b(function|return)\b/g,
-      '<span class="text-purple-400 font-semibold">$1</span>'
+      '<span class="text-purple-400 font-semibold">$1</span>',
     );
     // React JSX Props evaluation: {props.variable}
     html = html.replace(
       /\{props\.[^}]+\}/g,
-      '<span class="text-pink-400 font-semibold bg-pink-500/20 px-1.5 py-0.5 rounded transition-all">$&</span>'
+      '<span class="text-pink-400 font-semibold bg-pink-500/20 px-1.5 py-0.5 rounded transition-all">$&</span>',
     );
     // React className attributes
     html = html.replace(
       /(className=)&quot;([^&]*)&quot;/g,
-      '<span class="text-indigo-300">$1</span><span class="text-emerald-400">&quot;$2&quot;</span>'
+      '<span class="text-indigo-300">$1</span><span class="text-emerald-400">&quot;$2&quot;</span>',
     );
     // JSX Tag names
     html = html.replace(
       /&lt;(\/?[a-zA-Z0-9]+)/g,
-      '&lt;<span class="text-sky-400 font-medium">$1</span>'
+      '&lt;<span class="text-sky-400 font-medium">$1</span>',
     );
     // JSX closing brackets
     html = html.replace(
       /(&gt;)/g,
-      '<span class="text-sky-400 font-medium">$1</span>'
+      '<span class="text-sky-400 font-medium">$1</span>',
     );
     return html;
   }
@@ -448,7 +448,8 @@ export default function HomePage() {
               Syntax Rules by Engine
             </h2>
             <p className="text-muted-foreground text-lg max-w-xl mx-auto">
-              Quick comparison of how to fetch variables in each supported templating engine.
+              Quick comparison of how to fetch variables in each supported
+              templating engine.
             </p>
           </div>
 
@@ -515,7 +516,7 @@ export default function HomePage() {
                       template.{activeTab}
                     </span>
                   </div>
-                  
+
                   {/* Copy Button */}
                   <button
                     onClick={() => handleCopy(syntaxExamples[activeTab].code)}
@@ -524,7 +525,9 @@ export default function HomePage() {
                     {copied ? (
                       <>
                         <Check className="h-3.5 w-3.5 text-emerald-400" />
-                        <span className="text-emerald-400 font-semibold">Copied!</span>
+                        <span className="text-emerald-400 font-semibold">
+                          Copied!
+                        </span>
                       </>
                     ) : (
                       <>
@@ -538,22 +541,24 @@ export default function HomePage() {
                 {/* Editor Area with Line Numbers and Highlighting */}
                 <pre className="p-5 overflow-x-auto text-sm font-mono leading-relaxed text-slate-300 bg-slate-950/80">
                   <code className="block min-w-full">
-                    {syntaxExamples[activeTab].code.split("\n").map((line, idx) => (
-                      <div
-                        key={idx}
-                        className="flex items-start py-0.5 hover:bg-slate-900/60 px-2 -mx-2 rounded transition-colors duration-150"
-                      >
-                        <span className="select-none text-slate-600 text-right w-6 pr-3 text-xs font-semibold select-none pt-0.5">
-                          {idx + 1}
-                        </span>
-                        <span
-                          className="flex-1 whitespace-pre"
-                          dangerouslySetInnerHTML={{
-                            __html: highlightCode(line, activeTab),
-                          }}
-                        />
-                      </div>
-                    ))}
+                    {syntaxExamples[activeTab].code
+                      .split("\n")
+                      .map((line, idx) => (
+                        <div
+                          key={idx}
+                          className="flex items-start py-0.5 hover:bg-slate-900/60 px-2 -mx-2 rounded transition-colors duration-150"
+                        >
+                          <span className="select-none text-slate-600 text-right w-6 pr-3 text-xs font-semibold select-none pt-0.5">
+                            {idx + 1}
+                          </span>
+                          <span
+                            className="flex-1 whitespace-pre"
+                            dangerouslySetInnerHTML={{
+                              __html: highlightCode(line, activeTab),
+                            }}
+                          />
+                        </div>
+                      ))}
                   </code>
                 </pre>
               </div>
@@ -573,8 +578,8 @@ export default function HomePage() {
           </div>
           <div className="flex flex-col items-center gap-2">
             <p className="text-muted-foreground text-sm text-center">
-              &copy; {new Date().getFullYear()} SmartPreview. A highly premium and
-              state-of-the-art real-time compiler.
+              &copy; {new Date().getFullYear()} SmartPreview. A highly premium
+              and state-of-the-art real-time compiler.
             </p>
             <div className="flex items-center gap-3 text-xs text-muted-foreground">
               <span>Created by</span>
@@ -584,14 +589,14 @@ export default function HomePage() {
                 rel="noopener noreferrer"
                 className="text-primary hover:text-primary/80 hover:underline font-semibold transition-colors"
               >
-                Laolu Ajibade
+                Olaoluwa Ajibade
               </a>
               <span className="text-border">|</span>
               <a
-                href="mailto:laoluajibadee@gmail.com"
+                href="mailto:Olaoluwaajibadee@gmail.com"
                 className="hover:text-foreground transition-colors"
               >
-                laoluajibadee@gmail.com
+                Olaoluwaajibadee@gmail.com
               </a>
             </div>
           </div>
