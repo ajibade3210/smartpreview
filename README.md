@@ -104,7 +104,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 **Olaoluwa Ajibade**
 
 - Portfolio: [ajibadde.space](https://ajibadde.space)
-- Email: [Olaoluwaajibadee@gmail.com](mailto:[EMAIL_ADDRESS])
+- Email: [laoluajibadee@gmail.com](mailto:[EMAIL_ADDRESS])
 
 ## 🙏 Acknowledgments
 

@@ -593,10 +593,10 @@ export default function HomePage() {
               </a>
               <span className="text-border">|</span>
               <a
-                href="mailto:Olaoluwaajibadee@gmail.com"
+                href="mailto:laoluajibadee@gmail.com"
                 className="hover:text-foreground transition-colors"
               >
-                Olaoluwaajibadee@gmail.com
+                laoluajibadee@gmail.com
               </a>
             </div>
           </div>
