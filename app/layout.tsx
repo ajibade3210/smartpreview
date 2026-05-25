@@ -9,9 +9,10 @@ const _geist = Geist({ subsets: ["latin"] });
 const _geistMono = Geist_Mono({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "SmartPreview - Live HTML/Pug/Handlebars Editor",
+  title: "SmartPreview – Live EJS, JSX, HTML, Pug & Handlebars Preview",
   description:
-    "A real-time code preview editor supporting HTML, Pug, and Handlebars templates",
+    "Real‑time code preview editor for EJS, JSX, HTML, Pug, Handlebars & more. Instantly see template changes as you type.",
+  keywords: ["ejs","jsx","html","pug","handlebars","template preview","live preview","real-time editor","syntax highlighting","frontend development","web components","code sandbox"],
   generator: "v0.app",
   icons: {
     icon: [
@@ -100,6 +101,7 @@ export default function RootLayout({
                   price: "0",
                   priceCurrency: "USD",
                 },
+                keywords: ["ejs","jsx","html","pug","handlebars","template preview","live preview","real-time editor","syntax highlighting","frontend development","web components","code sandbox"],
               }),
             }}
           />
