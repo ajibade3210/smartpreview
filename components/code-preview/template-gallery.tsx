@@ -3,6 +3,7 @@
 import {
   Dialog,
   DialogContent,
+  DialogDescription,
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
@@ -623,6 +624,9 @@ export function TemplateGallery({
       <DialogContent className="max-w-3xl max-h-[80vh]">
         <DialogHeader>
           <DialogTitle>Template Gallery</DialogTitle>
+          <DialogDescription>
+            Select a starter template to load into the real-time code editor.
+          </DialogDescription>
         </DialogHeader>
         <ScrollArea className="h-[60vh] pr-4">
           <div className="grid grid-cols-2 gap-4">
