@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useCallback } from "react";
+import { useRef, useCallback, useEffect } from "react";
 import Editor, { type Monaco } from "@monaco-editor/react";
 import type { editor } from "monaco-editor";
 import { useTheme } from "next-themes";
@@ -14,6 +14,17 @@ interface CodeEditorProps {
 export function CodeEditor({ code, language, onChange }: CodeEditorProps) {
   const editorRef = useRef<editor.IStandaloneCodeEditor | null>(null);
   const { theme } = useTheme();
+
+  // Sync editor value with external updates (like template gallery selections)
+  // while avoiding resetting the value on typing to preserve the undo/redo stack.
+  useEffect(() => {
+    if (editorRef.current) {
+      const currentValue = editorRef.current.getValue();
+      if (code !== currentValue) {
+        editorRef.current.setValue(code);
+      }
+    }
+  }, [code]);
 
   const handleEditorDidMount = useCallback(
     (editor: editor.IStandaloneCodeEditor, monaco: Monaco) => {
@@ -92,7 +103,7 @@ export function CodeEditor({ code, language, onChange }: CodeEditorProps) {
       <Editor
         height="100%"
         language={getMonacoLanguage(language)}
-        value={code}
+        defaultValue={code}
         onChange={(value) => onChange(value || "")}
         onMount={handleEditorDidMount}
         theme={theme === "light" ? "preview-light" : "preview-dark"}

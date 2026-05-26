@@ -23,6 +23,154 @@ interface Template {
 
 const TEMPLATES: Template[] = [
   {
+    id: "email-newsletter",
+    name: "Email Newsletter",
+    description: "Premium dark-themed HTML email template with a banner",
+    language: "html",
+    preview: "Email",
+    variables: [
+      { key: "company", value: "TechInsight" },
+      { key: "userName", value: "Alex" },
+      { key: "introText", value: "We are thrilled to welcome you to our community of creators. Get ready to build your next big idea." },
+      { key: "ctaText", value: "Explore Dashboard" },
+    ],
+    code: `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome to {{company}}</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      width: 100% !important;
+      height: 100% !important;
+      background-color: #0b0f19;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    table {
+      border-collapse: collapse;
+    }
+    img {
+      border: 0;
+      height: auto;
+      line-height: 100%;
+      outline: none;
+      text-decoration: none;
+    }
+    .wrapper {
+      width: 100%;
+      table-layout: fixed;
+      background-color: #0b0f19;
+      padding: 40px 0;
+    }
+    .main-table {
+      width: 100%;
+      max-width: 600px;
+      margin: 0 auto;
+      background-color: #111827;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid #1f2937;
+    }
+    .banner-img {
+      width: 100%;
+      display: block;
+    }
+    .content-cell {
+      padding: 40px 32px;
+    }
+    .title {
+      color: #ffffff;
+      font-size: 24px;
+      font-weight: 700;
+      margin: 0 0 16px 0;
+      line-height: 1.3;
+    }
+    .text {
+      color: #9ca3af;
+      font-size: 16px;
+      line-height: 1.6;
+      margin: 0 0 24px 0;
+    }
+    .button-table {
+      margin: 0 auto 24px auto;
+    }
+    .button-cell {
+      border-radius: 8px;
+      background: linear-gradient(135deg, #10b981 0%, #06b6d4 100%);
+      text-align: center;
+    }
+    .button-link {
+      display: inline-block;
+      padding: 14px 32px;
+      color: #ffffff;
+      font-size: 16px;
+      font-weight: 600;
+      text-decoration: none;
+      border-radius: 8px;
+    }
+    .divider {
+      border-top: 1px solid #1f2937;
+      margin: 24px 0;
+    }
+    .footer-cell {
+      padding: 0 32px 40px 32px;
+      text-align: center;
+    }
+    .footer-text {
+      color: #4b5563;
+      font-size: 13px;
+      line-height: 1.5;
+      margin: 0;
+    }
+    .footer-link {
+      color: #10b981;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <center class="wrapper">
+    <table class="main-table" cellpadding="0" cellspacing="0" role="presentation">
+      <tr>
+        <td>
+          <img src="/email-banner.png" alt="Welcome Banner" class="banner-img" width="600">
+        </td>
+      </tr>
+      <tr>
+        <td class="content-cell">
+          <h1 class="title">Welcome, {{userName}}!</h1>
+          <p class="text">{{introText}}</p>
+          <table class="button-table" cellpadding="0" cellspacing="0" role="presentation">
+            <tr>
+              <td class="button-cell">
+                <a href="#" class="button-link">{{ctaText}}</a>
+              </td>
+            </tr>
+          </table>
+          <p class="text">If you have any questions, feel free to reply to this email. We're here to help!</p>
+          <div class="divider"></div>
+          <p class="text" style="font-size: 14px; margin-bottom: 0;">Cheers,<br>The {{company}} Team</p>
+        </td>
+      </tr>
+      <tr>
+        <td class="footer-cell">
+          <p class="footer-text">
+            © 2026 {{company}}. All rights reserved.<br>
+            You are receiving this because you signed up at {{company}}.<br>
+            <a href="#" class="footer-link">Unsubscribe</a> · <a href="#" class="footer-link">Preferences</a>
+          </p>
+        </td>
+      </tr>
+    </table>
+  </center>
+</body>
+</html>`,
+  },
+  {
     id: "landing-hero",
     name: "Landing Hero",
     description: "A stunning hero section with gradient background",
@@ -456,96 +604,6 @@ html(lang="en")
   </div>
 </body>
 </html>`,
-  },
-  {
-    id: "jsx-counter",
-    name: "Interactive Counter",
-    description: "React counter with animations",
-    language: "jsx",
-    preview: "Counter",
-    variables: [
-      { key: "title", value: "React Counter" },
-      { key: "startValue", value: "0" },
-    ],
-    code: `function App(props) {
-  const { title = "React Counter", startValue = "0" } = props;
-  const [count, setCount] = React.useState(parseInt(startValue) || 0);
-  
-  return (
-    <div style={{
-      fontFamily: 'system-ui, sans-serif',
-      minHeight: '100vh',
-      background: 'linear-gradient(135deg, #1a1a2e 0%, #16213e 100%)',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-    }}>
-      <div style={{
-        background: 'rgba(255,255,255,0.05)',
-        border: '1px solid rgba(255,255,255,0.1)',
-        borderRadius: '24px',
-        padding: '48px',
-        textAlign: 'center',
-      }}>
-        <h1 style={{
-          color: '#fff',
-          fontSize: '1.5rem',
-          marginBottom: '32px',
-        }}>{title}</h1>
-        <div style={{
-          fontSize: '5rem',
-          fontWeight: '800',
-          background: 'linear-gradient(135deg, #4ade80, #22d3ee)',
-          WebkitBackgroundClip: 'text',
-          WebkitTextFillColor: 'transparent',
-          marginBottom: '32px',
-        }}>{count}</div>
-        <div style={{ display: 'flex', gap: '16px', justifyContent: 'center' }}>
-          <button
-            onClick={() => setCount(c => c - 1)}
-            style={{
-              width: '56px',
-              height: '56px',
-              borderRadius: '16px',
-              border: '1px solid rgba(255,255,255,0.2)',
-              background: 'rgba(255,255,255,0.05)',
-              color: '#fff',
-              fontSize: '1.5rem',
-              cursor: 'pointer',
-            }}
-          >−</button>
-          <button
-            onClick={() => setCount(0)}
-            style={{
-              padding: '0 24px',
-              height: '56px',
-              borderRadius: '16px',
-              border: 'none',
-              background: 'rgba(255,255,255,0.1)',
-              color: 'rgba(255,255,255,0.7)',
-              fontSize: '1rem',
-              cursor: 'pointer',
-            }}
-          >Reset</button>
-          <button
-            onClick={() => setCount(c => c + 1)}
-            style={{
-              width: '56px',
-              height: '56px',
-              borderRadius: '16px',
-              border: 'none',
-              background: 'linear-gradient(135deg, #4ade80, #22d3ee)',
-              color: '#1a1a2e',
-              fontSize: '1.5rem',
-              fontWeight: '600',
-              cursor: 'pointer',
-            }}
-          >+</button>
-        </div>
-      </div>
-    </div>
-  );
-}`,
   },
 ];
 
