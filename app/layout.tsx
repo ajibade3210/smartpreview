@@ -9,6 +9,7 @@ const _geist = Geist({ subsets: ["latin"] });
 const _geistMono = Geist_Mono({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://smartpreview.vercel.app"),
   title: "SmartPreview – Live EJS, JSX, HTML, Pug & Handlebars Preview",
   description:
     "Real‑time code preview editor for EJS, JSX, HTML, Pug, Handlebars & more. Instantly see template changes as you type.",
