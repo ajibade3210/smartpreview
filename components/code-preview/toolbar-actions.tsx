@@ -13,7 +13,6 @@ import {
   Download,
   Check,
   FileArchive,
-  Maximize2,
   LayoutTemplate,
 } from "lucide-react";
 import JSZip from "jszip";
@@ -27,7 +26,6 @@ interface ToolbarActionsProps {
   language: Language;
   variables: Variable[];
   onOpenTemplates: () => void;
-  onOpenFullscreen: () => void;
 }
 
 export function ToolbarActions({
@@ -36,10 +34,8 @@ export function ToolbarActions({
   language,
   variables,
   onOpenTemplates,
-  onOpenFullscreen,
 }: ToolbarActionsProps) {
   const [copied, setCopied] = useState(false);
-  const [copiedHtml, setCopiedHtml] = useState(false);
 
   const handleCopyCode = async () => {
     try {
@@ -51,15 +47,7 @@ export function ToolbarActions({
     }
   };
 
-  const handleCopyHtml = async () => {
-    try {
-      await navigator.clipboard.writeText(compiledHtml);
-      setCopiedHtml(true);
-      setTimeout(() => setCopiedHtml(false), 2000);
-    } catch (err) {
-      console.error("Failed to copy HTML:", err);
-    }
-  };
+
 
   const handleDownloadHtml = () => {
     const blob = new Blob([compiledHtml], { type: "text/html" });
@@ -156,25 +144,7 @@ ${new Date().toISOString()}
             <p>{copied ? "Copied!" : "Copy Code"}</p>
           </TooltipContent>
         </Tooltip>
-        <Tooltip>
-          <TooltipTrigger asChild>
-            <Button
-              variant="ghost"
-              size="icon"
-              className="h-8 w-8"
-              onClick={handleCopyHtml}
-            >
-              {copiedHtml ? (
-                <Check className="h-4 w-4 text-primary" />
-              ) : (
-                <Copy className="h-4 w-4" />
-              )}
-            </Button>
-          </TooltipTrigger>
-          <TooltipContent>
-            <p>{copiedHtml ? "HTML Copied!" : "Copy HTML"}</p>
-          </TooltipContent>
-        </Tooltip>
+
 
         <Tooltip>
           <TooltipTrigger asChild>
@@ -208,21 +178,6 @@ ${new Date().toISOString()}
           </TooltipContent>
         </Tooltip>
 
-        <Tooltip>
-          <TooltipTrigger asChild>
-            <Button
-              variant="ghost"
-              size="icon"
-              className="h-8 w-8"
-              onClick={onOpenFullscreen}
-            >
-              <Maximize2 className="h-4 w-4" />
-            </Button>
-          </TooltipTrigger>
-          <TooltipContent>
-            <p>Fullscreen Preview</p>
-          </TooltipContent>
-        </Tooltip>
       </div>
     </TooltipProvider>
   );

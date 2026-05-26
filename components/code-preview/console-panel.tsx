@@ -1,18 +1,12 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
+import { useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { X, Trash2, Terminal } from "lucide-react";
+import { Trash2, Terminal } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-interface ConsoleMessage {
+export interface ConsoleMessage {
   id: number;
   type: "log" | "warn" | "error" | "info";
   content: string;
@@ -82,73 +76,3 @@ export function ConsolePanel({ messages, onClear }: ConsolePanelProps) {
     </div>
   );
 }
-
-interface FullscreenPreviewProps {
-  open: boolean;
-  onOpenChange: (open: boolean) => void;
-  html: string;
-  consoleMessages: ConsoleMessage[];
-  onConsoleClear: () => void;
-}
-
-export function FullscreenPreview({
-  open,
-  onOpenChange,
-  html,
-  consoleMessages,
-  onConsoleClear,
-}: FullscreenPreviewProps) {
-  const [showConsole, setShowConsole] = useState(true);
-
-  return (
-    <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="flex h-[90vh] max-w-[95vw] flex-col p-0">
-        <DialogHeader className="flex flex-row items-center justify-between border-b border-border px-4 py-3">
-          <DialogTitle>Full-Screen Preview</DialogTitle>
-          <div className="flex items-center gap-2">
-            <Button
-              variant={showConsole ? "secondary" : "ghost"}
-              size="sm"
-              onClick={() => setShowConsole(!showConsole)}
-            >
-              <Terminal className="mr-2 h-4 w-4" />
-              Console
-              {consoleMessages.length > 0 && (
-                <span className="ml-2 rounded-full bg-primary/20 px-1.5 text-xs">
-                  {consoleMessages.length}
-                </span>
-              )}
-            </Button>
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => onOpenChange(false)}
-            >
-              <X className="h-4 w-4" />
-            </Button>
-          </div>
-        </DialogHeader>
-        <div className="flex flex-1 overflow-hidden">
-          <div className={cn("flex-1", showConsole && "border-r border-border")}>
-            <iframe
-              srcDoc={html}
-              title="Fullscreen Preview"
-              className="h-full w-full border-0 bg-white"
-              sandbox="allow-scripts"
-            />
-          </div>
-          {showConsole && (
-            <div className="w-80">
-              <ConsolePanel
-                messages={consoleMessages}
-                onClear={onConsoleClear}
-              />
-            </div>
-          )}
-        </div>
-      </DialogContent>
-    </Dialog>
-  );
-}
-
-export type { ConsoleMessage };

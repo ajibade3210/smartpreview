@@ -5,7 +5,7 @@ import * as Babel from "@babel/standalone";
 import type { Variable } from "./variables-panel";
 import type { ViewportSize } from "./viewport-toggle";
 import type { PreviewTheme } from "./preview-theme-toggle";
-import type { ConsoleMessage } from "./fullscreen-preview";
+import type { ConsoleMessage } from "./console-panel";
 import { cn } from "@/lib/utils";
 
 interface PreviewPanelProps {
